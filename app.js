@@ -67,83 +67,86 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // --- Futuristic interactions: cursor follower & parallax ---
-  // Cursor follower
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Cursor follower (lightweight, only when motion is enabled)
   try {
-    const cursor = document.createElement('div');
-    cursor.className = 'cursor-follower';
-    document.body.appendChild(cursor);
+    if (!prefersReducedMotion) {
+      const cursor = document.createElement('div');
+      cursor.className = 'cursor-follower';
+      document.body.appendChild(cursor);
 
-    let mouseX = window.innerWidth / 2;
-    let mouseY = window.innerHeight / 2;
-    let curX = mouseX;
-    let curY = mouseY;
+      let mouseX = window.innerWidth / 2;
+      let mouseY = window.innerHeight / 2;
+      let curX = mouseX;
+      let curY = mouseY;
 
-    document.addEventListener('mousemove', (ev) => {
-      mouseX = ev.clientX;
-      mouseY = ev.clientY;
-      cursor.style.opacity = '1';
-    });
+      document.addEventListener('pointermove', (ev) => {
+        mouseX = ev.clientX;
+        mouseY = ev.clientY;
+        cursor.style.opacity = '1';
+      }, { passive: true });
 
-    let lerp = 0.06; // more subtle, slower follow
-    function animateCursor() {
-      curX += (mouseX - curX) * lerp;
-      curY += (mouseY - curY) * lerp;
-      cursor.style.transform = `translate3d(${curX}px, ${curY}px, 0) translate(-50%, -50%)`;
+      const animateCursor = () => {
+        curX += (mouseX - curX) * 0.12;
+        curY += (mouseY - curY) * 0.12;
+        cursor.style.transform = `translate3d(${curX}px, ${curY}px, 0) translate(-50%, -50%)`;
+        requestAnimationFrame(animateCursor);
+      };
       requestAnimationFrame(animateCursor);
-    }
-    requestAnimationFrame(animateCursor);
-    // enlarge cursor over interactive elements
-    const interactive = document.querySelectorAll('a, button, .btn');
-    interactive.forEach(el => {
-      el.addEventListener('mouseenter', () => cursor.classList.add('cursor-large'));
-      el.addEventListener('mouseleave', () => cursor.classList.remove('cursor-large'));
-    });
 
-    // fade out cursor when idle
-    let fadeTimeout;
-    document.addEventListener('mousemove', () => {
-      cursor.style.opacity = '0.92';
-      clearTimeout(fadeTimeout);
-      fadeTimeout = setTimeout(() => { cursor.style.opacity = '0.18'; }, 1200);
-    });
+      const interactive = document.querySelectorAll('a, button, .btn');
+      interactive.forEach(el => {
+        el.addEventListener('mouseenter', () => cursor.classList.add('cursor-large'));
+        el.addEventListener('mouseleave', () => cursor.classList.remove('cursor-large'));
+      });
+
+      let fadeTimeout;
+      document.addEventListener('pointermove', () => {
+        cursor.style.opacity = '0.92';
+        clearTimeout(fadeTimeout);
+        fadeTimeout = setTimeout(() => { cursor.style.opacity = '0.18'; }, 1200);
+      }, { passive: true });
+    }
   } catch (e) {}
 
-  // Parallax background & hero tilt
+  // Parallax background & hero tilt (single RAF loop for better FPS)
   try {
-    const gridBg = document.querySelector('.grid-bg');
-    const hero = document.querySelector('.hero');
-    const heroCard = document.querySelector('.hero-card');
-    const heroContent = document.querySelector('.hero-content');
+    if (!prefersReducedMotion) {
+      const gridBg = document.querySelector('.grid-bg');
+      const heroCard = document.querySelector('.hero-card');
+      const heroContent = document.querySelector('.hero-content');
 
-    document.addEventListener('mousemove', (e) => {
-      const px = (e.clientX / window.innerWidth - 0.5) * 2; // -1..1
-      const py = (e.clientY / window.innerHeight - 0.5) * 2;
+      let targetX = 0;
+      let targetY = 0;
+      let currentX = 0;
+      let currentY = 0;
 
-      if (gridBg) {
-        gridBg.style.transform = `translate3d(${px * 12}px, ${py * 12}px, 0) scale(1.01)`;
-      }
+      document.addEventListener('pointermove', (e) => {
+        targetX = (e.clientX / window.innerWidth - 0.5) * 2;
+        targetY = (e.clientY / window.innerHeight - 0.5) * 2;
+      }, { passive: true });
 
-      if (heroCard) {
-        heroCard.style.transform = `translate3d(${ -px * 8 }px, ${ -py * 6 }px, 0) rotateX(${ -py * 3 }deg) rotateY(${ px * 3 }deg)`;
-      }
+      const renderParallax = () => {
+        currentX += (targetX - currentX) * 0.08;
+        currentY += (targetY - currentY) * 0.08;
 
-      if (heroContent) {
-        heroContent.style.transform = `translate3d(${ px * 6 }px, ${ py * 4 }px, 0)`;
-      }
-    });
-    
-    // subtle tilt per service card
-    const serviceCards = document.querySelectorAll('.service-card');
-    if (serviceCards && serviceCards.length) {
-      serviceCards.forEach(card => {
-        card.addEventListener('mousemove', (ev) => {
-          const rect = card.getBoundingClientRect();
-          const x = (ev.clientX - rect.left) / rect.width - 0.5; // -0.5..0.5
-          const y = (ev.clientY - rect.top) / rect.height - 0.5;
-          card.style.transform = `translate3d(${x * 8}px, ${y * 6}px, 0) rotateX(${ -y * 4 }deg) rotateY(${ x * 4 }deg)`;
-        });
-        card.addEventListener('mouseleave', () => { card.style.transform = ''; });
-      });
+        if (gridBg) {
+          gridBg.style.transform = `translate3d(${currentX * 12}px, ${currentY * 12}px, 0) scale(1.01)`;
+        }
+
+        if (heroCard) {
+          heroCard.style.transform = `translate3d(${ -currentX * 8 }px, ${ -currentY * 6 }px, 0) rotateX(${ -currentY * 3 }deg) rotateY(${ currentX * 3 }deg)`;
+        }
+
+        if (heroContent) {
+          heroContent.style.transform = `translate3d(${ currentX * 6 }px, ${ currentY * 4 }px, 0)`;
+        }
+
+        requestAnimationFrame(renderParallax);
+      };
+
+      requestAnimationFrame(renderParallax);
     }
   } catch (e) {}
 
