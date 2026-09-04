@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests; block-all-mixed-content">
+  <meta name="description" content="FOXCOON ofrece tecnología futurista, soluciones digitales, ciberseguridad e inteligencia artificial para empresas y marcas innovadoras.">
+  <meta property="og:title" content="FOXCOON | www.foxcoon.com">
+  <meta property="og:description" content="Tecnología futurista, diseño premium y soluciones digitales innovadoras.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.foxcoon.com/">
+  <link rel="canonical" href="https://www.foxcoon.com/">
+
+  <title>FOXCOON | www.foxcoon.com</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="logo.png" type="image/png">
+
+  <!-- GOOGLE FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- FONT AWESOME -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+  <!-- Logo overlay (appears on top, can be closed) -->
+  <div class="logo-overlay" id="logoOverlay">
+    <div class="logo-wrap">
+      <div class="logo-particles">
+        <span class="logo-particle"></span>
+        <span class="logo-particle"></span>
+        <span class="logo-particle"></span>
+        <span class="logo-particle"></span>
+        <span class="logo-particle"></span>
+      </div>
+      <div class="logo-top-row">
+        <img src="logo.png" alt="Logo de FOXCOON" class="brand-logo" onerror="this.style.display='none';document.querySelector('.brand-fallback').style.display='block'">
+        <button class="overlay-close" id="overlayClose">✕</button>
+      </div>
+      <div class="brand-fallback" style="display:none">
+        <svg width="600" height="160" viewBox="0 0 600 160" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+          <defs>
+            <linearGradient id="g1" x1="0" x2="1">
+              <stop offset="0%" stop-color="#00e5ff"/>
+              <stop offset="100%" stop-color="#7a00ff"/>
+            </linearGradient>
+          </defs>
+          <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Orbitron, Rajdhani, sans-serif" font-size="56" fill="url(#g1)" style="letter-spacing:8px;">
+            FOXCOON
+          </text>
+        </svg>
+      </div>
+      <h1 class="brand-title">FOXCOON</h1>
+    </div>
+  </div>
+
+  <!-- GRID FUTURISTA -->
+  <div class="grid-bg"></div>
+
+  <!-- HEADER -->
+  <header>
+
+    <nav class="navbar">
+
+      <div class="logo">
+        <img src="logo.png" alt="Logo de FOXCOON" class="nav-logo" onerror="this.style.display='none'">
+        <span>FOXCOON</span>
+      </div>
+
+      <ul class="nav-links">
+
+        <li><a href="#inicio">Inicio</a></li>
+
+        <li><a href="#nosotros">Nosotros</a></li>
+
+        <li><a href="#servicios">Servicios</a></li>
+
+        <li><a href="#galeria">Galería</a></li>
+
+        <li><a href="#videos">Videos</a></li>
+
+        <li><a href="#contacto">Contacto</a></li>
+
+      </ul>
+
+    </nav>
+
+  </header>
+
+  <!-- HERO -->
+  <section class="hero reveal" id="inicio">
+
+    <div class="hero-content">
+
+      <span class="tag">
+        TECNOLOGÍA DE NUEVA GENERACIÓN
+      </span>
+
+      <h1>
+        Tecnología
+        <span>Futurista</span>
+      </h1>
+
+      <p>
+        FOXCOON desarrolla experiencias digitales premium,
+        interfaces futuristas y soluciones tecnológicas de nueva generación.
+      </p>
+
+      <div class="hero-buttons">
+
+        <button class="btn btn-primary">
+          Explorar
+        </button>
+
+        <button class="btn btn-outline">
+          Contactar
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- CARD FUTURISTA -->
+    <div class="hero-card">
+
+      <div class="card-header">
+
+        <span class="status">
+          SISTEMA EN LÍNEA
+        </span>
+
+        <div class="circle"></div>
+
+      </div>
+
+      <div class="card-box">
+
+        <h3>Neural Network</h3>
+
+        <p>Inteligencia Artificial Conectada</p>
+
+        <div class="progress">
+          <span></span>
+        </div>
+
+      </div>
+
+      <div class="card-box">
+
+        <h3>Ciberseguridad</h3>
+
+        <p>Protección habilitada con éxito</p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- NOSOTROS -->
+  <section class="services reveal" id="nosotros">
+
+    <div class="section-title">
+
+      <h2>Nosotros</h2>
+
+      <p>
+        Arquitectura frontend moderna y diseño UX/UI futurista.
+      </p>
+
+    </div>
+
+    <div class="services-grid">
+      <div class="service-card">
+
+        <i class="fa-solid fa-code"></i>
+
+        <h3>Misión</h3>
+
+        <p>
+          Ayudamos a nuestros clientes a mantener sus sistemas de software de manera segura, continua y optimizada. Brindamos soporte técnico garantizado, asegurando la evolución y el buen funcionamiento de sus dispositivos.
+        </p>
+
+      </div>
+
+      <div class="service-card">
+
+        <i class="fa-solid fa-eye"></i>
+
+        <h3>Visión</h3>
+
+        <p>
+          Ser una empresa líder en soluciones tecnológicas y soporte de software, reconocida por nuestra innovación, calidad y compromiso con nuestros clientes, ofreciendo servicios confiables que impulsen el crecimiento y la transformación digital de cada negocio.
+        </p>
+
+      </div>
+
+      <div class="service-card">
+
+        <i class="fa-solid fa-microchip"></i>
+
+        <h3>Sistemas IA</h3>
+
+        <p>
+          Automatización e inteligencia artificial avanzada.
+        </p>
+
+      </div>
+
+      <div class="service-card">
+
+        <i class="fa-solid fa-shield-halved"></i>
+
+        <h3>Ciberseguridad</h3>
+
+        <p>
+          Protección digital y sistemas seguros modernos.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- GALERIA -->
+  <section class="services reveal" id="galeria">
+
+    <div class="section-title">
+
+      <h2>Galería</h2>
+
+      <p>
+        Experiencias visuales tecnológicas futuristas.
+      </p>
+
+    </div>
+
+    <div class="gallery-grid">
+
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop">
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1200&auto=format&fit=crop">
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1200&auto=format&fit=crop">
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- VIDEOS -->
+  <section class="services reveal" id="videos">
+
+    <div class="section-title">
+
+      <h2>Videos</h2>
+
+      <p>
+        Tecnología visual avanzada.
+      </p>
+
+    </div>
+
+    <div class="video-grid">
+
+      <iframe src="https://www.youtube.com/embed/bmixiVwtDso" allowfullscreen></iframe>
+
+      <iframe src="https://www.youtube.com/embed/XHOmBV4js_E" allowfullscreen></iframe>
+
+    </div>
+
+  </section>
+
+  <!-- CONTACTO -->
+  <section class="services reveal" id="contacto">
+
+    <div class="section-title">
+
+      <h2>Contacto</h2>
+
+      <p>
+        Lleva tu empresa al siguiente nivel.
+      </p>
+
+    </div>
+
+    <div class="contact-container">
+
+      <p class="draft-status" id="draftStatus">El borrador se guarda automáticamente. También puedes guardarlo manualmente.</p>
+
+      <button type="button" class="btn btn-outline save-draft-btn" id="saveDraftBtn">Guardar borrador</button>
+
+      <form class="contact-form">
+
+        <input type="text" placeholder="Nombre">
+
+        <input type="email" placeholder="Correo">
+
+        <textarea placeholder="Mensaje"></textarea>
+
+        <button class="btn btn-primary">
+          Enviar
+        </button>
+
+      </form>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+
+    <p>
+      © 2026 FOXCOON — Experiencia Digital Futurista — <a href="https://www.foxcoon.com" target="_blank" rel="noopener noreferrer">www.foxcoon.com</a>
+    </p>
+
+  </footer>
+
+  <script src="app.js"></script>
+
+</body>
+</html>
